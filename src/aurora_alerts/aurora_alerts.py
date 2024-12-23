@@ -62,7 +62,6 @@ def main(event, context):
     rounded_down_hour = datetime.strftime(now.replace(second=0, microsecond=0, minute=0), '%Y-%m-%dT%H:%M:%S%z')
     message = ""
 
-    #Loop over each activity and add any times that have aurora activity higher than the threshold to the relevant arrays dependent on the visibility conditions.
     for activity in activity_bs:
         period = activity.find('datetime').get_text()
         if period > rounded_down_hour:
