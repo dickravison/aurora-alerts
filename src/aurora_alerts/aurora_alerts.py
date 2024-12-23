@@ -60,14 +60,14 @@ def main(event, context):
     activity_bs = activity_xml.find_all('activity')
 
     now = datetime.today()
-    prev_hour = datetime.strftime(now.replace(second=0, microsecond=0, minute=0), '%Y-%m-%dT%H:%M:%S%z')
+    rounded_down_hour = datetime.strftime(now.replace(second=0, microsecond=0, minute=0), '%Y-%m-%dT%H:%M:%S%z')
     message = ""
 
     #Loop over each activity and add any times that have aurora activity higher than the threshold to the relevant arrays dependent on the visibility conditions.
     for activity in activity_bs:
         period = activity.find('datetime').get_text()
         print(period)
-        if period > prev_hour:
+        if period > rounded_down_hour:
             value = activity.find('value').get_text()
             period = datetime.strptime(period, '%Y-%m-%dT%H:%M:%S%z')
             period = period.strftime('%H:%M')
