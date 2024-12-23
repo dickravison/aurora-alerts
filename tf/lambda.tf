@@ -1,10 +1,4 @@
 resource "aws_lambda_function" "aurora_alerts" {
-  #checkov:skip=CKV_AWS_115:concurrent execution limit
-  #checkov:skip=CKV_AWS_173:env var encryption
-  #checkov:skip=CKV_AWS_116:dlq
-  #checkov:skip=CKV_AWS_50:x-ray tracing
-  #checkov:skip=CKV_AWS_272:code-signing
-  #checkov:skip=CKV_AWS_117:vpc
   filename         = data.archive_file.aurora_alerts.output_path
   function_name    = var.project_name
   role             = aws_iam_role.aurora_alerts.arn
